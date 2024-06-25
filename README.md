@@ -13,13 +13,13 @@ Permite acceder a datos de diferentes estaciones meteorológicas en todo el paí
 La API está disponible en diferentes endpoints, cada uno con su propio conjunto de datos y funcionalidades.
 
 # Ejemplos de uso
-Condiciones actuales y pronóstico
+- Condiciones actuales y pronóstico
 Se puede obtener información sobre las condiciones actuales y el pronóstico del clima en una ciudad específica mediante la URL https://ws.smn.gob.ar/map_items/weather. Se puede especificar la ciudad mediante el parámetro city_id.
 
-Radares y satélites
+- Radares y satélites
 La API REST del SMN proporciona acceso a imágenes de radar y satélite, que se pueden utilizar para obtener información sobre la situación meteorológica actual. Por ejemplo, la URL https://www.smn.gob.ar/radar/responsiveFrame proporciona acceso a las imágenes de radar.
 
-Alertas y avisos
+- Alertas y avisos
 La API REST del SMN también proporciona acceso a alertas y avisos meteorológicos, que se pueden obtener mediante la URL https://ws.smn.gob.ar/alerts/type/IE (Informes Especiales) o https://ws.smn.gob.ar/alerts/type/AC (Avisos a Corto Plazo).
 
 # Ventajas
