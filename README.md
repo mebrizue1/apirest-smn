@@ -1,35 +1,261 @@
-*apirest-smn*
+#Inicio#
+Vamos a construir una API REST con Spring Boot, MySQL e IntelliJ IDEA para gestionar los 600 empleados de la Sede Central del Servicio Meteorológico Nacional (República Argentina) ubicada en Av. Dorrego 4019.
 
-API REST para el Servicio Meteorológico Nacional
+##Componentes del proyecto##
+La estructura de la base de datos tendrá una tabla employees que almacenará la información básica de cada empleado, como nombre, apellido, puesto y salario.
+1. Configuración del proyecto en IntelliJ IDEA
+a. Crear un proyecto Maven en IntelliJ IDEA
+1.	Abre IntelliJ IDEA y selecciona New Project.
+2.	Escoge Spring Initializr y completa con los detalles del proyecto (grupo, artefacto, etc.).
+3.	Añade las dependencias necesarias para Spring Web, Spring Data JPA, y MySQL Driver.
+b. Configurar el archivo pom.xml
+En el archivo pom.xml, asegúrate de incluir las dependencias necesarias:
+````xml
 
-# Api rest smn
-La API REST SMN (Servicio Meteorológico Nacional) es una tecnología que permite intercambiar datos entre aplicaciones y obtener información meteorológica en tiempo real. A continuación, se presentan algunas características y ejemplos de cómo utilizar la API REST SMN:
+<dependencies>
+    <!-- Spring Boot para la API REST -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
 
-# Características
+    <!-- Spring Data JPA para interactuar con MySQL -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
 
-Permite obtener datos meteorológicos en tiempo real, incluyendo condiciones actuales y pronósticos.
-Ofrece diferentes formatos de datos, como JSON y CSV.
-Permite acceder a datos de diferentes estaciones meteorológicas en todo el país.
-La API está disponible en diferentes endpoints, cada uno con su propio conjunto de datos y funcionalidades.
+    <!-- Conector MySQL -->
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <scope>runtime</scope>
+    </dependency>
 
-# Ejemplos de uso
-- Condiciones actuales y pronóstico
-Se puede obtener información sobre las condiciones actuales y el pronóstico del clima en una ciudad específica mediante la URL https://ws.smn.gob.ar/map_items/weather. Se puede especificar la ciudad mediante el parámetro city_id.
+    <!-- Herramientas de desarrollo -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-devtools</artifactId>
+    </dependency>
+</dependencies>
+````
+2. Configurar la conexión a MySQL
+Asume que has creado una base de datos en MySQL llamada smn_db con una tabla llamada employees.
+En el archivo src/main/resources/application.properties:
+````properties
 
-- Radares y satélites
-La API REST del SMN proporciona acceso a imágenes de radar y satélite, que se pueden utilizar para obtener información sobre la situación meteorológica actual. Por ejemplo, la URL https://www.smn.gob.ar/radar/responsiveFrame proporciona acceso a las imágenes de radar.
+spring.datasource.url=jdbc:mysql://localhost:3306/smn_db
+spring.datasource.username=root
+spring.datasource.password=password
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
-- Alertas y avisos
-La API REST del SMN también proporciona acceso a alertas y avisos meteorológicos, que se pueden obtener mediante la URL https://ws.smn.gob.ar/alerts/type/IE (Informes Especiales) o https://ws.smn.gob.ar/alerts/type/AC (Avisos a Corto Plazo).
+# Configuración de JPA
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+3. Modelo Employee
+Este modelo representará a cada empleado. Los atributos pueden incluir el ID, nombre, apellido, puesto (por ejemplo, meteorólogo, analista, etc.), salario y ubicación (en este caso, todos en la Sede Central).
+java
 
-# Ventajas
+package com.smn.employees.model;
 
-Permite obtener información meteorológica en tiempo real y actualizada.
-Ofrece diferentes formatos de datos para adaptarse a las necesidades de diferentes aplicaciones.
-Permite acceder a datos de diferentes estaciones meteorológicas en todo el país.
+import jakarta.persistence.*;
 
-# Desventajas
+@Entity
+@Table(name = "employees")
+public class Employee {
 
-La API REST SMN no está documentada exhaustivamente, lo que puede hacer que sea difícil de utilizar para desarrolladores no experimentados.
-La API puede ser lenta o inestable en momentos de alta demanda.
-En resumen, la API REST SMN es una herramienta útil para obtener información meteorológica en tiempo real y actualizada, pero requiere un conocimiento detallado de su funcionamiento y configuración para utilizarla de manera efectiva.
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String firstName;
+    private String lastName;
+    private String position;
+    private double salary;
+
+    @Column(name = "location")
+    private String location = "Sede Central, Av Dorrego 4019"; // Ubicación fija
+
+    // Getters y setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+}
+4. Repositorio EmployeeRepository
+El repositorio nos permitirá interactuar con la base de datos para obtener y manipular los empleados.
+java
+
+package com.smn.employees.repository;
+
+import com.smn.employees.model.Employee;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+}
+5. Servicio EmployeeService
+El servicio gestionará la lógica de negocio, conectando el controlador con el repositorio.
+java
+
+package com.smn.employees.service;
+
+import com.smn.employees.model.Employee;
+import com.smn.employees.repository.EmployeeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class EmployeeService {
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
+    public List<Employee> getAllEmployees() {
+        return employeeRepository.findAll();
+    }
+
+    public Optional<Employee> getEmployeeById(Long id) {
+        return employeeRepository.findById(id);
+    }
+
+    public Employee createEmployee(Employee employee) {
+        return employeeRepository.save(employee);
+    }
+
+    public Employee updateEmployee(Long id, Employee employeeDetails) {
+        Employee employee = employeeRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Employee not found"));
+        
+        employee.setFirstName(employeeDetails.getFirstName());
+        employee.setLastName(employeeDetails.getLastName());
+        employee.setPosition(employeeDetails.getPosition());
+        employee.setSalary(employeeDetails.getSalary());
+
+        return employeeRepository.save(employee);
+    }
+
+    public void deleteEmployee(Long id) {
+        employeeRepository.deleteById(id);
+    }
+}
+6. Controlador EmployeeController
+El controlador gestionará las solicitudes HTTP y llamará al servicio para realizar las operaciones CRUD.
+java
+
+package com.smn.employees.controller;
+
+import com.smn.employees.model.Employee;
+import com.smn.employees.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/employees")
+public class EmployeeController {
+
+    @Autowired
+    private EmployeeService employeeService;
+
+    @GetMapping
+    public List<Employee> getAllEmployees() {
+        return employeeService.getAllEmployees();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
+        Employee employee = employeeService.getEmployeeById(id)
+            .orElseThrow(() -> new RuntimeException("Employee not found"));
+        return ResponseEntity.ok(employee);
+    }
+
+    @PostMapping
+    public Employee createEmployee(@RequestBody Employee employee) {
+        return employeeService.createEmployee(employee);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @RequestBody Employee employeeDetails) {
+        Employee updatedEmployee = employeeService.updateEmployee(id, employeeDetails);
+        return ResponseEntity.ok(updatedEmployee);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteEmployee(@PathVariable Long id) {
+        employeeService.deleteEmployee(id);
+        return ResponseEntity.noContent().build();
+    }
+}
+7. Ejecutar la API
+Ejecuta la aplicación en IntelliJ IDEA y asegúrate de que tu servidor MySQL esté en funcionamiento. Para probar los endpoints, puedes usar herramientas como Postman o curl.
+8. Probar la API con curl o Postman
+1.	Obtener todos los empleados (GET):
+bash
+
+curl -X GET http://localhost:8080/api/employees
+2.	Crear un empleado (POST):
+bash
+
+curl -X POST http://localhost:8080/api/employees -H "Content-Type: application/json" -d '{"firstName":"Juan", "lastName":"Perez", "position":"Meteorólogo", "salary":60000}'
+3.	Actualizar un empleado (PUT):
+bash
+
+curl -X PUT http://localhost:8080/api/employees/1 -H "Content-Type: application/json" -d '{"firstName":"Juan", "lastName":"Gomez", "position":"Analista", "salary":65000}'
+4.	Eliminar un empleado (DELETE):
+bash
+
+curl -X DELETE http://localhost:8080/api/employees/1
+Conclusión
+Esta API REST gestiona empleados del Servicio Meteorológico Nacional, con la ubicación predeterminada de la Sede Central en Av Dorrego 4019. Hemos creado un modelo de empleado, configurado una base de datos MySQL, y conectado todo a través de controladores y servicios utilizando Spring Boot.
+
