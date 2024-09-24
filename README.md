@@ -1,4 +1,5 @@
-#Inicio
+# Inicio
+
 Vamos a construir una API REST con Spring Boot, MySQL e IntelliJ IDEA para gestionar los 600 empleados de la Sede Central del Servicio Meteorológico Nacional (República Argentina) ubicada en Av. Dorrego 4019.
 
 ##Componentes del proyecto
