@@ -2,8 +2,10 @@
 
 Vamos a construir una API REST con Spring Boot, MySQL e IntelliJ IDEA para gestionar los 600 empleados de la Sede Central del Servicio Meteorológico Nacional (República Argentina) ubicada en Av. Dorrego 4019.
 
-##Componentes del proyecto
+## Componentes del proyecto
+
 La estructura de la base de datos tendrá una tabla employees que almacenará la información básica de cada empleado, como nombre, apellido, puesto y salario.
+
 1. Configuración del proyecto en IntelliJ IDEA
 a. Crear un proyecto Maven en IntelliJ IDEA
 1.	Abre IntelliJ IDEA y selecciona New Project.
