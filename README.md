@@ -7,12 +7,17 @@ Vamos a construir una API REST con Spring Boot, MySQL e IntelliJ IDEA para gesti
 La estructura de la base de datos tendrá una tabla employees que almacenará la información básica de cada empleado, como nombre, apellido, puesto y salario.
 
 1. Configuración del proyecto en IntelliJ IDEA
+   
 a. Crear un proyecto Maven en IntelliJ IDEA
+
 1.	Abre IntelliJ IDEA y selecciona New Project.
-2.	Escoge Spring Initializr y completa con los detalles del proyecto (grupo, artefacto, etc.).
+
+2.	Elegí Spring Initializr y completá con los detalles del proyecto (grupo, artefacto, etc.).
+   
 3.	Añade las dependencias necesarias para Spring Web, Spring Data JPA, y MySQL Driver.
+   
 b. Configurar el archivo pom.xml
-En el archivo pom.xml, asegúrate de incluir las dependencias necesarias:
+En el archivo pom.xml, asegurate de incluir las dependencias necesarias:
 ````xml
 
 <dependencies>
@@ -42,9 +47,12 @@ En el archivo pom.xml, asegúrate de incluir las dependencias necesarias:
     </dependency>
 </dependencies>
 ````
+
 2. Configurar la conexión a MySQL
-Asume que has creado una base de datos en MySQL llamada smn_db con una tabla llamada employees.
+
+Creaste una base de datos en MySQL llamada smn_db con una tabla llamada employees.
 En el archivo src/main/resources/application.properties:
+
 ````properties
 
 spring.datasource.url=jdbc:mysql://localhost:3306/smn_db
@@ -129,9 +137,13 @@ public class Employee {
         this.location = location;
     }
 }
+````
+
 4. Repositorio EmployeeRepository
+
 El repositorio nos permitirá interactuar con la base de datos para obtener y manipular los empleados.
-java
+
+````java
 
 package com.smn.employees.repository;
 
@@ -190,8 +202,11 @@ public class EmployeeService {
         employeeRepository.deleteById(id);
     }
 }
+````
 6. Controlador EmployeeController
+
 El controlador gestionará las solicitudes HTTP y llamará al servicio para realizar las operaciones CRUD.
+````
 java
 
 package com.smn.employees.controller;
@@ -240,10 +255,14 @@ public class EmployeeController {
         return ResponseEntity.noContent().build();
     }
 }
+````
 7. Ejecutar la API
+
 Ejecuta la aplicación en IntelliJ IDEA y asegúrate de que tu servidor MySQL esté en funcionamiento. Para probar los endpoints, puedes usar herramientas como Postman o curl.
-8. Probar la API con curl o Postman
+
+9. Probar la API con curl o Postman
 1.	Obtener todos los empleados (GET):
+````
 bash
 
 curl -X GET http://localhost:8080/api/employees
@@ -255,10 +274,15 @@ curl -X POST http://localhost:8080/api/employees -H "Content-Type: application/j
 bash
 
 curl -X PUT http://localhost:8080/api/employees/1 -H "Content-Type: application/json" -d '{"firstName":"Juan", "lastName":"Gomez", "position":"Analista", "salary":65000}'
+````
 4.	Eliminar un empleado (DELETE):
-bash
+
+````bash
 
 curl -X DELETE http://localhost:8080/api/employees/1
-Conclusión
-Esta API REST gestiona empleados del Servicio Meteorológico Nacional, con la ubicación predeterminada de la Sede Central en Av Dorrego 4019. Hemos creado un modelo de empleado, configurado una base de datos MySQL, y conectado todo a través de controladores y servicios utilizando Spring Boot.
+````
+
+### Conclusión
+
+Esta API REST gestiona empleados del Servicio Meteorológico Nacional, con la ubicación predeterminada de la Sede Central en Av Dorrego 4019. Creamos un modelo de empleado, configurado una base de datos MySQL, y conectado todo a través de controladores y servicios utilizando Spring Boot.
 
