@@ -60,7 +60,7 @@ Ejemplo 1: Recursos para el sistema de gestión de empleados:
 - Departamento
 - Proyectos
 - Tarea
-- DIRECCIÓN
+- Dirección
 
 Ejemplo 2: Recursos para el sistema de gestión de estudiantes:
 
@@ -70,61 +70,102 @@ Ejemplo 2: Recursos para el sistema de gestión de estudiantes:
 - Clase
 - Sujeto
 
-URI - Identificador uniforme de recursos 
+## URI - Identificador uniforme de recursos 
+
 El recurso se puede identificar mediante un identificador uniforme de recursos (URI). En el caso de los sistemas basados en la Web, el protocolo HTTP es el más utilizado para comunicarse con sistemas externos. Se puede identificar un recurso único mediante un URI.
+
 Considerá que estamos desarrollando una aplicación de blog simple y se puede definir una URI para un recurso de publicación de blog:
+
 GET— http://localhost:8080/api/posts/: Devuelve una lista de todas las publicaciones
+
 GET— http://localhost:8080/api/posts/2 : Devuelve una publicación cuyo ID es 2
+
 POST— http://localhost:8080/api/posts/ : Crea un nuevo recurso de publicación
+
 PUT— http://localhost:8080/api/posts/2: Actualiza un recurso POST cuyo ID es 2
+
 DELETE— http://localhost:8080/api/posts/2: Elimina un recurso POST cuyo ID es 2
 
-Subrecurso (sub-resource)
+## Subrecurso (sub-resource)
+
 En REST, las relaciones suelen estar modeladas por un subrecurso. Usá el siguiente patrón para los subrecursos.
+
 GET  /{resource}/{resource-id}/{sub-resource}
+
 GET  /{resource}/{resource-id}/{sub-resource}/{sub-resource-id}
+
 POST /{resource}/{resource-id}/{sub-resource}
+
 Ejemplo: 
 
 GET  /{post}/{post-id}/{comments}
+
 GET  /{post}/{post-id}/{comments}/{comment-id}
+
 POST /{post}/{post-id}/{comments}
 
 Utilizá subrecursos. El objeto secundario (child) no puede existir sin su padre.
-Métodos HTTP
+
+## Métodos HTTP
+
 Verbos HTTP comunes:
+
 • 	GET: para obtener una colección o un solo recurso
+
 • 	PUT: para crear un nuevo recurso
+
 • 	PUT: para actualizar un recurso existente
-• 	ELIMINAR: para eliminar una colección o un solo recurso
-Obtenga más información sobre los métodos HTTP en  API REST - Métodos HTTP
+
+• 	DELETE: para eliminar una colección o un solo recurso
+
 Código de estado HTTP
+
 Algunos de los códigos de estado utilizados con frecuencia en esta clase son los siguientes:
+
 •	200 OK: Este código indica que la solicitud es exitosa y el contenido de la respuesta se devuelve al cliente según corresponda.
+
 •	201 Creado: Este código indica que la solicitud es exitosa y se crea un nuevo recurso.
+
 •	400 Solicitud incorrecta: este código indica que el servidor no pudo procesar la solicitud debido a una sintaxis incorrecta. El cliente puede volver a intentarlo después de corregir la solicitud.
+
 •	401 No autorizado: este código indica que se requiere autenticación para el recurso. El cliente puede volver a intentarlo con la autenticación adecuada.
+
 •	403 Prohibido: este código indica que el servidor se niega a responder a la solicitud, incluso si esta es válida. El motivo se indicará en el contenido del cuerpo si la solicitud no es un método HEAD.
+
 •	404 No encontrado: este código indica que el recurso solicitado no se encuentra en la ubicación especificada en la solicitud.
+
 •	500 Error interno del servidor: este código indica un mensaje de error genérico y dice que ocurrió un error inesperado en el servidor y que no se puede cumplir la solicitud.
 
 # 5. Cree una API REST con Java
 ## 1. Conceptos básicos de REST
 ✅   Descripción general de REST
+
 ✅   ¿Qué es la carga útil (Payload) en REST API? 
+
 ✅   API REST: métodos HTTP  
+
 ✅   API REST: códigos de estado HTTP  
+
 ✅   Ventajas de REST
+
 ✅   API REST: restricciones arquitectónicas de REST 
+
 ✅   API REST: propiedades arquitectónicas de REST
+
 ✅   API REST: elementos arquitectónicos de REST
+
 ✅   Diferencia entre servicios web SOAP y REST
 
 ## 2. Guía de diseño de API REST
+
 ✅   Cómo identificar recursos REST
+
 ✅   Cómo diseñar URL para recursos REST  
+
 ✅   Cómo asignar métodos HTTP a recursos REST
+
 ✅   Cómo modelar el formato de representación JSON  
+
 ✅   Qué código de estado HTTP devolver
 
 ## 3. Prácticas recomendadas para el diseño de API Rest
@@ -132,24 +173,37 @@ Algunos de los códigos de estado utilizados con frecuencia en esta clase son lo
 
 ## 4. Cree una API REST con Jersey Rest Framework
 ✅   Ejemplo de Jersey Rest Hello World
+
 ✅   Ejemplo de servicios web CRUD Restful JAX-RS de Jersey  
+
 ✅   Guía para desarrolladores de Jersey Rest
 
 ## 5. Cree una API REST utilizando JAX-RS RESTEasy Framework
 ✅   Tutorial de ejemplo de "Hola mundo" de RESTEasy  
+
 ✅   Tutorial de RESTEasy JAX-RS Get, POST, PUT y DELETE  
+
 ✅   Cliente RESTEasy para API RESTFul GET, POST, PUT y DELETE
 
 ## 6. Cree una API REST con Spring Boot
 ✅  Proyecto de API CRUD REST de Spring Boot con IntelliJ IDEA | Postman | MySQL
+
 ✅  Tutorial de API CRUD Restful de Spring Boot, MySQL, JPA e Hibernate
+
 ✅  Ejemplo de API Rest de carga y descarga de archivos de Spring Boot
+
 ✅  Tutorial de API Restful CRUD de Spring Boot, H2, JPA e Hibernate
+
 ✅  API REST de inicio de sesión de Spring Boot con Spring Security y MySQL
+
 ✅  API REST de inicio de sesión y registro con Spring Boot, Spring Security, Hibernate y base de datos MySQL
+
 ✅  Documentación de la API REST de Spring Boot con Swagger
+
 ✅  Búsqueda de API REST con Spring Boot, Spring Data JPA y base de datos MySQL
+
 ✅  Pruebas unitarias de Spring Boot de la API CRUD REST con JUnit y Mockito
+
 ✅  Tutorial de la API CRUD REST de MySQL para pruebas de integración de Spring Boot
 
 Fuente:  https://www.javaguides.net/p/rest-api-tutorial.html (Autor: Ramesh Fadatare)
