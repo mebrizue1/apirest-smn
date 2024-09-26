@@ -55,6 +55,7 @@ Una API que tiene las siguientes restricciones se conoce como API RESTful:
 Recurso
 El concepto fundamental de un sistema basado en REST es el recurso. Un recurso es cualquier cosa que desee exponer al mundo exterior a través de tu aplicación.
 Ejemplo 1: Recursos para el sistema de gestión de empleados:
+
 - Empleado
 - Departamento
 - Proyectos
@@ -62,6 +63,7 @@ Ejemplo 1: Recursos para el sistema de gestión de empleados:
 - DIRECCIÓN
 
 Ejemplo 2: Recursos para el sistema de gestión de estudiantes:
+
 - Alumno
 - Maestro
 - Escuela
