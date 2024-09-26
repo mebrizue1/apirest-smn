@@ -44,16 +44,23 @@ Es responsabilidad del componente empresarial (desarrollado por un proveedor de 
 # 3. Restricciones arquitectónicas REST
 
 Una API que tiene las siguientes restricciones se conoce como API RESTful:
+
 (Client-server architecture) Arquitectura cliente-servidor: el cliente es el front-end y el servidor es el back-end del servicio. Es importante destacar que ambas entidades son independientes entre sí.
+
 (Stateless) Sin estado: no se deben almacenar datos en el servidor durante el procesamiento de la transferencia de la solicitud. El estado de la sesión se debe guardar en el extremo del cliente.
+
 (Cacheable) Almacenamiento en caché: el cliente debe tener la capacidad de almacenar respuestas en caché. Esto mejora enormemente el rendimiento de la API.
+
 (Uniform Interface) Interfaz Uniforme: Esta restricción indica una interfaz genérica para gestionar todas las interacciones entre el cliente y el servidor de forma unificada, lo que simplifica y desacopla la arquitectura. 
+
 (Layered System) Sistema en capas: el servidor puede tener varias capas para su implementación. Esta arquitectura en capas ayuda a mejorar la escalabilidad al permitir el equilibrio de carga.
+
 (Code on Demand) Código a pedido: esta restricción es opcional. Esta restricción indica que la funcionalidad de las aplicaciones cliente se puede ampliar en tiempo de ejecución al permitir la descarga de código desde el servidor y ejecutarlo.
 
 # 4. Conceptos clave de REST
 Recurso
 El concepto fundamental de un sistema basado en REST es el recurso. Un recurso es cualquier cosa que desee exponer al mundo exterior a través de tu aplicación.
+
 Ejemplo 1: Recursos para el sistema de gestión de empleados:
 
 - Empleado
@@ -138,7 +145,7 @@ Algunos de los códigos de estado utilizados con frecuencia en esta clase son lo
 
 # 5. Cree una API REST con Java
 ## 1. Conceptos básicos de REST
-✅   Descripción general de REST
+✅   Descripción general de REST [https://www.javaguides.net/2018/06/overview-of-rest.html]
 
 ✅   ¿Qué es la carga útil (Payload) en REST API? 
 
