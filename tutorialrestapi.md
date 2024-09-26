@@ -145,9 +145,9 @@ Algunos de los códigos de estado utilizados con frecuencia en esta clase son lo
 
 # 5. Cree una API REST con Java
 ## 1. Conceptos básicos de REST
-✅   Descripción general de REST [https://www.javaguides.net/2018/06/overview-of-rest.html]
+✅   Descripción general de REST (https://www.javaguides.net/2018/06/overview-of-rest.html)
 
-✅   ¿Qué es la carga útil (Payload) en REST API? 
+✅   ¿Qué es la carga útil (Payload) en REST API? (https://www.javaguides.net/2021/05/what-is-payload-in-rest-api.html)
 
 ✅   API REST: métodos HTTP  
 
