@@ -145,72 +145,72 @@ Algunos de los códigos de estado utilizados con frecuencia en esta clase son lo
 
 # 5. Cree una API REST con Java
 ## 1. Conceptos básicos de REST
-✅   Descripción general de REST (https://www.javaguides.net/2018/06/overview-of-rest.html)
+✅   [Descripción general de REST](https://www.javaguides.net/2018/06/overview-of-rest.html)
 
-✅   ¿Qué es la carga útil (Payload) en REST API? (https://www.javaguides.net/2021/05/what-is-payload-in-rest-api.html)
+✅   [¿Qué es la carga útil (Payload) en REST API? ](https://www.javaguides.net/2021/05/what-is-payload-in-rest-api.html)
 
-✅   API REST: métodos HTTP  (https://www.javaguides.net/2021/01/rest-api-http-methods.html)
+✅   [API REST: métodos HTTP](https://www.javaguides.net/2021/01/rest-api-http-methods.html)
 
-✅   API REST: códigos de estado HTTP (https://www.javaguides.net/2021/01/rest-api-http-status-codes.html) 
+✅   [API REST: códigos de estado HTTP](https://www.javaguides.net/2021/01/rest-api-http-status-codes.html) 
 
-✅   Ventajas de REST (https://www.javaguides.net/2018/07/advantages-of-rest.html)
+✅   [Ventajas de REST](https://www.javaguides.net/2018/07/advantages-of-rest.html)
 
-✅   API REST: restricciones arquitectónicas de REST  (https://www.javaguides.net/2018/06/rest-architectural-constraints.html)
+✅   [API REST: restricciones arquitectónicas de REST  ](https://www.javaguides.net/2018/06/rest-architectural-constraints.html)
 
-✅   API REST: propiedades arquitectónicas de REST  (https://www.javaguides.net/2018/06/rest-architectural-properties.html)
+✅   [API REST: propiedades arquitectónicas de REST  ](https://www.javaguides.net/2018/06/rest-architectural-properties.html)
 
-✅   API REST: elementos arquitectónicos de REST  (https://www.javaguides.net/2018/06/rest-architectural-elements.html)
+✅   [API REST: elementos arquitectónicos de REST  ](https://www.javaguides.net/2018/06/rest-architectural-elements.html)
 
-✅   Diferencia entre servicios web SOAP y REST  (https://www.javaguides.net/2018/07/rest-vs-soap.html)
+✅   [Diferencia entre servicios web SOAP y REST  ](https://www.javaguides.net/2018/07/rest-vs-soap.html)
 
 ## 2. Guía de diseño de API REST
 
-✅   Cómo identificar recursos REST  (https://www.javaguides.net/2018/06/how-to-identify-rest-resources.html)
+✅   [Cómo identificar recursos REST  ](https://www.javaguides.net/2018/06/how-to-identify-rest-resources.html)
 
-✅   Cómo diseñar URL para recursos REST  (https://www.javaguides.net/2018/06/how-to-design-url-to-rest-resource.html)
+✅   [Cómo diseñar URL para recursos REST  ](https://www.javaguides.net/2018/06/how-to-design-url-to-rest-resource.html)
 
-✅   Cómo asignar métodos HTTP a recursos REST  (https://www.javaguides.net/2018/06/how-to-assign-http-methods-to-rest-resources.html)
+✅   [Cómo asignar métodos HTTP a recursos REST  ](https://www.javaguides.net/2018/06/how-to-assign-http-methods-to-rest-resources.html)
 
-✅   Cómo modelar el formato de representación JSON  (https://www.javaguides.net/2018/06/how-to-model-json-representation-format.html)
+✅   [Cómo modelar el formato de representación JSON  ](https://www.javaguides.net/2018/06/how-to-model-json-representation-format.html)
 
-✅   Qué código de estado HTTP devolver  (https://www.javaguides.net/2018/06/what-http-status-code-to-return.html)
+✅   [Qué código de estado HTTP devolver  ](https://www.javaguides.net/2018/06/what-http-status-code-to-return.html)
 
 ## 3. Prácticas recomendadas para el diseño de API Rest
-✅   Prácticas recomendadas para el diseño de una API Restful  (https://www.javaguides.net/2018/06/restful-api-design-best-practices.html)
+✅   [Prácticas recomendadas para el diseño de una API Restful  ](https://www.javaguides.net/2018/06/restful-api-design-best-practices.html)
 
 ## 4. Cree una API REST con Jersey Rest Framework
-✅   Ejemplo de Jersey Rest Hello World  (https://www.javaguides.net/2018/06/jersey-rest-hello-world-example.html)
+✅   [Ejemplo de Jersey Rest Hola mundo](https://www.javaguides.net/2018/06/jersey-rest-hello-world-example.html)
 
-✅   Ejemplo de servicios web CRUD Restful JAX-RS de Jersey  (https://www.javaguides.net/2018/06/jersey-jax-rs-restful-crud-web-services-example.html)
+✅   [Ejemplo de servicios web CRUD Restful JAX-RS de Jersey  ](https://www.javaguides.net/2018/06/jersey-jax-rs-restful-crud-web-services-example.html)
 
-✅   Guía para desarrolladores de Jersey Rest  (https://www.javaguides.net/p/jersey-rest.html)
+✅   [Guía para desarrolladores de Jersey Rest  ](https://www.javaguides.net/p/jersey-rest.html)
 
 ## 5. Cree una API REST utilizando JAX-RS RESTEasy Framework
-✅   Tutorial de ejemplo de "Hola mundo" de RESTEasy  (https://www.javaguides.net/2020/01/resteasy-hello-world-example-tutorial.html)
+✅   [Tutorial de ejemplo de "Hola mundo" de RESTEasy](https://www.javaguides.net/2020/01/resteasy-hello-world-example-tutorial.html)
 
-✅   Tutorial de RESTEasy JAX-RS Get, POST, PUT y DELETE  (https://www.javaguides.net/2020/01/resteasy-jax-rs-get-post-put-and-delete-tutorial.html)
+✅   [Tutorial de RESTEasy JAX-RS Get, POST, PUT y DELETE](https://www.javaguides.net/2020/01/resteasy-jax-rs-get-post-put-and-delete-tutorial.html)
 
-✅   Cliente RESTEasy para API RESTFul GET, POST, PUT y DELETE  (https://www.javaguides.net/2020/01/resteasy-client-for-get-post-put-and-delete-rest-apis.html)
+✅   [Cliente RESTEasy para API RESTFul GET, POST, PUT y DELETE](https://www.javaguides.net/2020/01/resteasy-client-for-get-post-put-and-delete-rest-apis.html)
 
 ## 6. Cree una API REST con Spring Boot
-✅  Proyecto de API CRUD REST de Spring Boot con IntelliJ IDEA | Postman | MySQL  (https://www.javaguides.net/2021/10/spring-boot-crud-rest-api-project-using-IntelliJ-IDEA.html)
+✅  [Proyecto de API CRUD REST de Spring Boot con IntelliJ IDEA | Postman | MySQL](https://www.javaguides.net/2021/10/spring-boot-crud-rest-api-project-using-IntelliJ-IDEA.html)
 
-✅  Tutorial de API CRUD Restful de Spring Boot, MySQL, JPA e Hibernate  (https://www.javaguides.net/2020/04/spring-boot-mysql-jpa-hibernate-restful-crud-api-tutorial.html)
+✅  [Tutorial de API CRUD Restful de Spring Boot, MySQL, JPA e Hibernate](https://www.javaguides.net/2020/04/spring-boot-mysql-jpa-hibernate-restful-crud-api-tutorial.html)
 
-✅  Ejemplo de API Rest de carga y descarga de archivos de Spring Boot  (https://www.javaguides.net/2020/04/spring-boot-file-upload-download-rest-api-example.html)
+✅  [Ejemplo de API Rest de carga y descarga de archivos de Spring Boot](https://www.javaguides.net/2020/04/spring-boot-file-upload-download-rest-api-example.html)
 
-✅  Tutorial de API Restful CRUD de Spring Boot, H2, JPA e Hibernate  (https://www.javaguides.net/2020/04/spring-boot-h2-jpa-hibernate-restful-crud-api-tutorial.html)
+✅  [Tutorial de API Restful CRUD de Spring Boot, H2, JPA e Hibernate](https://www.javaguides.net/2020/04/spring-boot-h2-jpa-hibernate-restful-crud-api-tutorial.html)
 
-✅  API REST de inicio de sesión de Spring Boot con Spring Security y MySQL  (https://www.javaguides.net/2020/04/spring-boot-h2-jpa-hibernate-restful-crud-api-tutorial.html)
+✅  [API REST de inicio de sesión de Spring Boot con Spring Security y MySQL](https://www.javaguides.net/2020/04/spring-boot-h2-jpa-hibernate-restful-crud-api-tutorial.html)
 
-✅  API REST de inicio de sesión y registro con Spring Boot, Spring Security, Hibernate y base de datos MySQL  (https://www.javaguides.net/2020/04/spring-boot-file-upload-download-rest-api-example.html)
+✅  [API REST de inicio de sesión y registro con Spring Boot, Spring Security, Hibernate y base de datos MySQL](https://www.javaguides.net/2020/04/spring-boot-file-upload-download-rest-api-example.html)
 
-✅  Documentación de la API REST de Spring Boot con Swagger  (https://www.javaguides.net/2021/06/spring-boot-rest-api-documentation-with-swagger.html)
+✅  [Documentación de la API REST de Spring Boot con Swagger](https://www.javaguides.net/2021/06/spring-boot-rest-api-documentation-with-swagger.html)
 
-✅  Búsqueda de API REST con Spring Boot, Spring Data JPA y base de datos MySQL  (https://www.javaguides.net/2022/04/search-rest-api-using-spring-boot.html)
+✅  [Búsqueda de API REST con Spring Boot, Spring Data JPA y base de datos MySQL](https://www.javaguides.net/2022/04/search-rest-api-using-spring-boot.html)
 
-✅  Pruebas unitarias de Spring Boot de la API CRUD REST con JUnit y Mockito  (https://www.javaguides.net/2022/03/spring-boot-unit-testing-crud-rest-api-with-junit-and-mockito.html)
+✅  [Pruebas unitarias de Spring Boot de la API CRUD REST con JUnit y Mockito](https://www.javaguides.net/2022/03/spring-boot-unit-testing-crud-rest-api-with-junit-and-mockito.html)
 
-✅  Tutorial de la API CRUD REST de MySQL para pruebas de integración de Spring Boot  (https://www.javaguides.net/2022/03/spring-boot-integration-testing-mysql-crud-rest-api-tutorial.html)
+✅  [Tutorial de la API CRUD REST de MySQL para pruebas de integración de Spring Boot](https://www.javaguides.net/2022/03/spring-boot-integration-testing-mysql-crud-rest-api-tutorial.html)
 
 Fuente:  https://www.javaguides.net/p/rest-api-tutorial.html (Autor: Ramesh Fadatare)
