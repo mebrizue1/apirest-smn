@@ -4,21 +4,31 @@
 
 REST significa Transferencia de Estado de Representación (Representational State Transfer).
 Entendamos el significado de cada palabra del acrónimo REST.
+
 •	 Estado (State) = datos
+
 •	 REpresentacional = formatos (como XML, JSON, YAML, HTML, etc.)
+
 •	 Transferir = llevar datos entre el consumidor y el proveedor utilizando el protocolo HTTP
 
 ## Transferencia de estado representacional
+
 •	REST fue acuñado originalmente por Roy Fielding, quien también fue el inventor del protocolo HTTP.
+
 •	Una API REST es una interfaz de programación de aplicaciones intermediaria que permite que dos aplicaciones se comuniquen entre sí a través de HTTP, de forma muy similar a cómo los servidores se comunican con los navegadores.
-•	El estilo arquitectónico REST se ha vuelto rápidamente muy popular en todo el mundo para diseñar aplicaciones que puedan comunicarse. 
+
+•	El estilo arquitectónico REST se ha vuelto rápidamente muy popular en todo el mundo para diseñar aplicaciones que puedan comunicarse.
+
 •	La necesidad de API REST aumentó mucho con el aumento drástico de dispositivos móviles. Se volvió lógico crear API REST y dejar que los clientes web y móviles consumieran la API en lugar de desarrollar aplicaciones separadas.
 
 # 2. Arquitectura REST
+
 El siguiente diagrama muestra la arquitectura REST típica:
 
-<span>![</span><span>diagrama REST</span><span>]</span><span>(</span><span>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjrF2AyWS4JnOXV3R2vV9UWOdun7kcoxaF6PyEo6wKQqnBdJnDI9O6NdcdcvbvJgqNX-Xr4CdL_eE5kswqLeaFjmsNJqJT0ZfJmVNPFc6tFPmFYTuoPneUWny2AO0EHYH9ved0Et0ql5GA/s1280/Slide4.PNG</span><span>)</span>
+![Diagrama REST](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjrF2AyWS4JnOXV3R2vV9UWOdun7kcoxaF6PyEo6wKQqnBdJnDI9O6NdcdcvbvJgqNX-Xr4CdL_eE5kswqLeaFjmsNJqJT0ZfJmVNPFc6tFPmFYTuoPneUWny2AO0EHYH9ved0Et0ql5GA/s1280/Slide4.PNG "Diagrama REST")
+
 Comprendamos algunos términos de servicios web observando la arquitectura anterior:
+
 (Request y response) Solicitud y respuesta: la solicitud es la entrada a un servicio web y la respuesta es la salida de un servicio web.
 
 (Message Exchange Format) Formato de intercambio de mensajes: es el formato de la solicitud y la respuesta. Existen dos formatos de intercambio de mensajes más conocidos: XML y JSON.
