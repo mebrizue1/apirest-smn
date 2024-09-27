@@ -35,7 +35,7 @@ Algunas razones clave para implementar una API REST en este contexto:
 
 - Carga de datos eficiente: Permite hacer consultas específicas, devolviendo solo los datos necesarios en lugar de enviar grandes volúmenes de información.
 
-"" 7. Facilita el desarrollo ágil
+## 7. Facilita el desarrollo ágil
 
 - Desarrollo modular: Los desarrolladores pueden trabajar en diferentes partes de la aplicación (frontend y backend) de manera independiente, facilitando el desarrollo ágil.
 
