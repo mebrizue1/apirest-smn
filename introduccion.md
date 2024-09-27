@@ -44,8 +44,11 @@ Algunas razones clave para implementar una API REST en este contexto:
 ### Ejemplos de funcionalidades:
 
 CRUD: Permitir la creación, lectura, actualización y eliminación de registros de empleados.
+
 Búsqueda: Implementar endpoints para buscar empleados por diferentes criterios (nombre, cargo, etc.).
+
 Reportes: Generar reportes sobre la antigüedad de los empleados, estadísticas de estado civil, etc.
+
 Integración con otros sistemas: Compartir datos con sistemas de nómina o gestión de recursos humanos.
 
 ## Resumen
