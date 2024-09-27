@@ -15,7 +15,7 @@ Algunas razones clave para implementar una API REST en este contexto:
 
 - Expansión fácil: Si la organización crece o cambian los requisitos, se pueden agregar fácilmente nuevas funcionalidades o endpoints a la API sin afectar las aplicaciones que ya la usan.
 
-_ Manejo de más datos: La API puede manejar grandes volúmenes de datos, permitiendo que las consultas se optimicen y escalen según sea necesario.
+- Manejo de más datos: La API puede manejar grandes volúmenes de datos, permitiendo que las consultas se optimicen y escalen según sea necesario.
 
 4. Seguridad y control de acceso
 
