@@ -1,39 +1,84 @@
-1. Introducción al Proyecto
-1.1. Antecedentes y Justificación
-El Servicio Meteorológico Nacional es una entidad fundamental en la recopilación y análisis de datos meteorológicos en Argentina. La necesidad de modernizar y optimizar la gestión interna de datos llevó a la idea de desarrollar una API REST. Esta API tiene como objetivo principal centralizar la información de los empleados, permitiendo un acceso más eficiente y seguro, y facilitando la interoperabilidad con otros sistemas internos y externos.
-1.2. Objetivos del Proyecto
+# 1. Introducción al Proyecto
+   
+## 1.1. Antecedentes y Justificación
+
+El Servicio Meteorológico Nacional es una entidad fundamental en la recopilación y análisis de datos meteorológicos en Argentina. La necesidad de modernizar y optimizar la gestión interna de datos llevó a la idea de desarrollar una API REST. Esta API tiene como objetivo principal centralizar la información de los empleados, permitiendo un acceso más eficiente y seguro, y facilitando la interoperabilidad con otros sistemas internos y externos. 
+Una API REST (Application Programming Interface basada en Representational State Transfer) es un conjunto de reglas y convenciones que permiten que diferentes sistemas o aplicaciones se comuniquen entre sí a través de la web, utilizando el protocolo HTTP.
+
+REST se basa en principios que definen cómo las aplicaciones deben interactuar entre sí, y es común en el desarrollo de aplicaciones web por su simplicidad y eficiencia.
+
+Algunas características clave de una API REST son:
+
+- Cliente-servidor: El cliente (por ejemplo, un navegador web o aplicación) solicita datos al servidor, y el servidor devuelve los datos en un formato generalmente en JSON o XML.
+
+- Stateless (sin estado): Cada solicitud del cliente al servidor es independiente, es decir, no se guarda información de solicitudes anteriores.
+Uso de métodos HTTP: Las solicitudes se hacen utilizando métodos como GET (obtener), POST (crear), PUT (actualizar), y DELETE (eliminar).
+Recursos: Todo en REST es considerado un "recurso", y estos recursos se identifican a través de URLs.
+
+Creamos una API REST para los empleados de la Sede Central del Servicio Meteorológico Nacional. Es una forma para que otras aplicaciones o sistemas accedan a los datos de empleados de forma estructurada a través de la web.
+
+## 1.2. Objetivos del Proyecto
 •	Centralización de la Información: Unificar la gestión de los datos de los empleados en una base de datos única y accesible mediante una API estandarizada.
+
 •	Facilitar la Integración: Permitir que otros sistemas del SMN se integren fácilmente a través de la API.
+
 •	Seguridad y Control de Acceso: Implementar mecanismos de autenticación y autorización para proteger los datos sensibles.
+
 •	Escalabilidad: Diseñar la API de manera que pueda escalar fácilmente con el crecimiento del SMN y sus necesidades tecnológicas.
-1.3. Alcance del Proyecto
+
+## 1.3. Alcance del Proyecto
 •	Módulo de Empleados: La API permite gestionar información básica de los empleados, como datos personales, roles, y ubicaciones.
+
 •	Módulo de Consultas: Proveer endpoints para consultar información consolidada sobre los empleados.
+
 •	Módulo de Administración: Funcionalidades para agregar, actualizar o eliminar registros.
-2. Arquitectura y Diseño del Sistema
-2.1. Arquitectura de la Aplicación
+
+# 2. Arquitectura y Diseño del Sistema
+
+## 2.1. Arquitectura de la Aplicación
+
 La API se basa en el patrón de diseño MVC (Model-View-Controller), común en el desarrollo de aplicaciones web. En este caso, la estructura se adapta de la siguiente manera:
+
 •	Modelo (Model): Representa las entidades de la base de datos, en este caso, los empleados y otros datos relacionados.
+
 •	Vista (View): Aunque no se utilizan vistas en una API REST, se puede entender como las respuestas JSON que la API entrega a los clientes.
+
 •	Controlador (Controller): Gestiona las solicitudes HTTP, procesando la lógica de negocio y retornando las respuestas adecuadas.
-2.2. Diagrama de Arquitectura
+
+## 2.2. Diagrama de Arquitectura
+
 Presentaría un diagrama de alto nivel mostrando cómo la API interactúa con la base de datos MySQL, el flujo de datos y cómo se manejan las solicitudes y respuestas.
-2.3. Componentes del Sistema
+
+## 2.3. Componentes del Sistema
+
 1.	Controladores (Controllers): Manejan las peticiones HTTP y coordinan la lógica de negocio.
+
 2.	Servicios (Services): Encapsulan la lógica de negocio, permitiendo la reutilización y separación de responsabilidades.
+
 3.	Repositorios (Repositories): Interactúan directamente con la base de datos.
+
 4.	Entidades (Entities): Representan las tablas de la base de datos en el código.
-2.4. Elección de Tecnologías
+
+## 2.4. Elección de Tecnologías
 •	Spring Boot: Framework robusto para construir aplicaciones Java, que facilita la configuración y la implementación rápida de APIs REST.
+
 •	MySQL: Base de datos relacional conocida por su rendimiento y facilidad de uso.
+
 •	GitHub: Para el control de versiones y la colaboración en equipo.
-3. Desarrollo de la API
-3.1. Creación del Proyecto
+
+# 3. Desarrollo de la API
+
+## 3.1. Creación del Proyecto
+
 •	Inicialización con Spring Boot: Se utiliza la herramienta Spring Initializr para generar la estructura básica del proyecto, con dependencias como Spring Web, Spring Data JPA y MySQL Driver.
+
 •	Configuración de la Base de Datos: Se configura el archivo application.properties o application.yml con los parámetros de conexión a la base de datos, como URL, usuario y contraseña.
-3.2. Modelo de Datos
+
+## 3.2. Modelo de Datos
+
 •	Entidad Empleado: Definición de la clase Empleado con sus atributos (ID, nombre, apellido, cargo, etc.) y sus anotaciones JPA para mapearla a la tabla correspondiente en la base de datos.
 •	Relaciones entre Entidades: Definición de relaciones (OneToMany, ManyToOne) si se utilizan otras entidades como Departamento, Rol, etc.
+
 3.3. Repositorios y Servicios
 •	Repositorios: Creación de interfaces que extienden de JpaRepository, permitiendo realizar operaciones CRUD básicas sobre las entidades.
 •	Servicios: Implementación de la lógica de negocio, como validación de datos antes de persistirlos, lógica para cálculos o transformaciones específicas.
