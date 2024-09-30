@@ -258,26 +258,31 @@ public class EmployeeController {
 ````
 7. Ejecutar la API
 
-Ejecuta la aplicación en IntelliJ IDEA y asegúrate de que tu servidor MySQL esté en funcionamiento. Para probar los endpoints, puedes usar herramientas como Postman o curl.
+Ejecuta la aplicación en IntelliJ IDEA y asegurate de que tu servidor MySQL esté en funcionamiento. Probar los endpoints con Postman.
 
-9. Probar la API con curl o Postman
+9. Probar la API con Postman
 1.	Obtener todos los empleados (GET):
 ````
 bash
 
 curl -X GET http://localhost:8080/api/employees
+````
 2.	Crear un empleado (POST):
+````
 bash
 
 curl -X POST http://localhost:8080/api/employees -H "Content-Type: application/json" -d '{"firstName":"Juan", "lastName":"Perez", "position":"Meteorólogo", "salary":60000}'
+````
 3.	Actualizar un empleado (PUT):
+````
 bash
 
 curl -X PUT http://localhost:8080/api/employees/1 -H "Content-Type: application/json" -d '{"firstName":"Juan", "lastName":"Gomez", "position":"Analista", "salary":65000}'
 ````
 4.	Eliminar un empleado (DELETE):
 
-````bash
+````
+bash
 
 curl -X DELETE http://localhost:8080/api/employees/1
 ````
