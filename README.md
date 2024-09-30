@@ -64,8 +64,11 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+````
+
 3. Modelo Employee
 Este modelo representará a cada empleado. Los atributos pueden incluir el ID, nombre, apellido, puesto (por ejemplo, meteorólogo, analista, etc.), salario y ubicación (en este caso, todos en la Sede Central).
+````
 java
 
 package com.smn.employees.model;
@@ -143,7 +146,8 @@ public class Employee {
 
 El repositorio nos permitirá interactuar con la base de datos para obtener y manipular los empleados.
 
-````java
+````
+java
 
 package com.smn.employees.repository;
 
@@ -258,7 +262,7 @@ public class EmployeeController {
 ````
 7. Ejecutar la API
 
-Ejecuta la aplicación en IntelliJ IDEA y asegurate de que tu servidor MySQL esté en funcionamiento. Probar los endpoints con Postman.
+Ejecuta la aplicación en IntelliJ IDEA y asegurate de que tu servidor MySQL esté en funcionamiento. Probar los endpoints con Postman o con curl.
 
 9. Probar la API con Postman
 1.	Obtener todos los empleados (GET):
