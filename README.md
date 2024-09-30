@@ -157,7 +157,7 @@ o	Relación entre tablas: Explicación de cómo se manejan las relaciones (FKs) 
 ## 6.3. Documentación
 •	Swagger: Generación de documentación automática de la API usando Swagger y OpenAPI.
 
-•	Markdown en GitHub: Documentación del repositorio utilizando archivos Markdown (README.md, tutorialrestapi.md).
+•	Markdown en GitHub: Documentación del repositorio utilizando archivos Markdown (en un nuevo proyecto: README.md, tutorialrestapi.md).
 
 # 7. Despliegue e Implementación
 
