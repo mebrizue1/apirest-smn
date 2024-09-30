@@ -1,297 +1,107 @@
-# Inicio
-
-Vamos a construir una API REST con Spring Boot, MySQL e IntelliJ IDEA para gestionar los 600 empleados de la Sede Central del Servicio Meteorológico Nacional (República Argentina) ubicada en Av. Dorrego 4019.
-
-## Componentes del proyecto
-
-La estructura de la base de datos tendrá una tabla employees que almacenará la información básica de cada empleado, como nombre, apellido, puesto y salario.
-
-1. Configuración del proyecto en IntelliJ IDEA
-   
-a. Crear un proyecto Maven en IntelliJ IDEA
-
-1.	Abre IntelliJ IDEA y selecciona New Project.
-
-2.	Elegí Spring Initializr y completá con los detalles del proyecto (grupo, artefacto, etc.).
-   
-3.	Añade las dependencias necesarias para Spring Web, Spring Data JPA, y MySQL Driver.
-   
-b. Configurar el archivo pom.xml
-En el archivo pom.xml, asegurate de incluir las dependencias necesarias:
-````xml
-
-<dependencies>
-    <!-- Spring Boot para la API REST -->
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-
-    <!-- Spring Data JPA para interactuar con MySQL -->
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-data-jpa</artifactId>
-    </dependency>
-
-    <!-- Conector MySQL -->
-    <dependency>
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
-        <scope>runtime</scope>
-    </dependency>
-
-    <!-- Herramientas de desarrollo -->
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-devtools</artifactId>
-    </dependency>
-</dependencies>
-````
-
-2. Configurar la conexión a MySQL
-
-Creaste una base de datos en MySQL llamada smn_db con una tabla llamada employees.
-En el archivo src/main/resources/application.properties:
-
-````properties
-
-spring.datasource.url=jdbc:mysql://localhost:3306/smn_db
-spring.datasource.username=root
-spring.datasource.password=password
-spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-
-# Configuración de JPA
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
-````
-
-3. Modelo Employee
-Este modelo representará a cada empleado. Los atributos pueden incluir el ID, nombre, apellido, puesto (por ejemplo, meteorólogo, analista, etc.), salario y ubicación (en este caso, todos en la Sede Central).
-````
-java
-
-package com.smn.employees.model;
-
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "employees")
-public class Employee {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String firstName;
-    private String lastName;
-    private String position;
-    private double salary;
-
-    @Column(name = "location")
-    private String location = "Sede Central, Av Dorrego 4019"; // Ubicación fija
-
-    // Getters y setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    public double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-}
-````
-
-4. Repositorio EmployeeRepository
-
-El repositorio nos permitirá interactuar con la base de datos para obtener y manipular los empleados.
-
-````
-java
-
-package com.smn.employees.repository;
-
-import com.smn.employees.model.Employee;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
-@Repository
-public interface EmployeeRepository extends JpaRepository<Employee, Long> {
-}
-5. Servicio EmployeeService
-El servicio gestionará la lógica de negocio, conectando el controlador con el repositorio.
-java
-
-package com.smn.employees.service;
-
-import com.smn.employees.model.Employee;
-import com.smn.employees.repository.EmployeeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
-
-@Service
-public class EmployeeService {
-
-    @Autowired
-    private EmployeeRepository employeeRepository;
-
-    public List<Employee> getAllEmployees() {
-        return employeeRepository.findAll();
-    }
-
-    public Optional<Employee> getEmployeeById(Long id) {
-        return employeeRepository.findById(id);
-    }
-
-    public Employee createEmployee(Employee employee) {
-        return employeeRepository.save(employee);
-    }
-
-    public Employee updateEmployee(Long id, Employee employeeDetails) {
-        Employee employee = employeeRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Employee not found"));
-        
-        employee.setFirstName(employeeDetails.getFirstName());
-        employee.setLastName(employeeDetails.getLastName());
-        employee.setPosition(employeeDetails.getPosition());
-        employee.setSalary(employeeDetails.getSalary());
-
-        return employeeRepository.save(employee);
-    }
-
-    public void deleteEmployee(Long id) {
-        employeeRepository.deleteById(id);
-    }
-}
-````
-6. Controlador EmployeeController
-
-El controlador gestionará las solicitudes HTTP y llamará al servicio para realizar las operaciones CRUD.
-````
-java
-
-package com.smn.employees.controller;
-
-import com.smn.employees.model.Employee;
-import com.smn.employees.service.EmployeeService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
-@RestController
-@RequestMapping("/api/employees")
-public class EmployeeController {
-
-    @Autowired
-    private EmployeeService employeeService;
-
-    @GetMapping
-    public List<Employee> getAllEmployees() {
-        return employeeService.getAllEmployees();
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
-        Employee employee = employeeService.getEmployeeById(id)
-            .orElseThrow(() -> new RuntimeException("Employee not found"));
-        return ResponseEntity.ok(employee);
-    }
-
-    @PostMapping
-    public Employee createEmployee(@RequestBody Employee employee) {
-        return employeeService.createEmployee(employee);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @RequestBody Employee employeeDetails) {
-        Employee updatedEmployee = employeeService.updateEmployee(id, employeeDetails);
-        return ResponseEntity.ok(updatedEmployee);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteEmployee(@PathVariable Long id) {
-        employeeService.deleteEmployee(id);
-        return ResponseEntity.noContent().build();
-    }
-}
-````
-7. Ejecutar la API
-
-Ejecuta la aplicación en IntelliJ IDEA y asegurate de que tu servidor MySQL esté en funcionamiento. Probar los endpoints con Postman o con curl.
-
-9. Probar la API con Postman
-1.	Obtener todos los empleados (GET):
-````
-bash
-
-curl -X GET http://localhost:8080/api/employees
-````
-2.	Crear un empleado (POST):
-````
-bash
-
-curl -X POST http://localhost:8080/api/employees -H "Content-Type: application/json" -d '{"firstName":"Juan", "lastName":"Perez", "position":"Meteorólogo", "salary":60000}'
-````
-3.	Actualizar un empleado (PUT):
-````
-bash
-
-curl -X PUT http://localhost:8080/api/employees/1 -H "Content-Type: application/json" -d '{"firstName":"Juan", "lastName":"Gomez", "position":"Analista", "salary":65000}'
-````
-4.	Eliminar un empleado (DELETE):
-
-````
-bash
-
-curl -X DELETE http://localhost:8080/api/employees/1
-````
-
-### Conclusión
-
-Esta API REST gestiona empleados del Servicio Meteorológico Nacional, con la ubicación predeterminada de la Sede Central en Av Dorrego 4019. Creamos un modelo de empleado, configurado una base de datos MySQL, y conectado todo a través de controladores y servicios utilizando Spring Boot.
-
+1. Introducción al Proyecto
+1.1. Antecedentes y Justificación
+El Servicio Meteorológico Nacional es una entidad fundamental en la recopilación y análisis de datos meteorológicos en Argentina. La necesidad de modernizar y optimizar la gestión interna de datos llevó a la idea de desarrollar una API REST. Esta API tiene como objetivo principal centralizar la información de los empleados, permitiendo un acceso más eficiente y seguro, y facilitando la interoperabilidad con otros sistemas internos y externos.
+1.2. Objetivos del Proyecto
+•	Centralización de la Información: Unificar la gestión de los datos de los empleados en una base de datos única y accesible mediante una API estandarizada.
+•	Facilitar la Integración: Permitir que otros sistemas del SMN se integren fácilmente a través de la API.
+•	Seguridad y Control de Acceso: Implementar mecanismos de autenticación y autorización para proteger los datos sensibles.
+•	Escalabilidad: Diseñar la API de manera que pueda escalar fácilmente con el crecimiento del SMN y sus necesidades tecnológicas.
+1.3. Alcance del Proyecto
+•	Módulo de Empleados: La API permite gestionar información básica de los empleados, como datos personales, roles, y ubicaciones.
+•	Módulo de Consultas: Proveer endpoints para consultar información consolidada sobre los empleados.
+•	Módulo de Administración: Funcionalidades para agregar, actualizar o eliminar registros.
+2. Arquitectura y Diseño del Sistema
+2.1. Arquitectura de la Aplicación
+La API se basa en el patrón de diseño MVC (Model-View-Controller), común en el desarrollo de aplicaciones web. En este caso, la estructura se adapta de la siguiente manera:
+•	Modelo (Model): Representa las entidades de la base de datos, en este caso, los empleados y otros datos relacionados.
+•	Vista (View): Aunque no se utilizan vistas en una API REST, se puede entender como las respuestas JSON que la API entrega a los clientes.
+•	Controlador (Controller): Gestiona las solicitudes HTTP, procesando la lógica de negocio y retornando las respuestas adecuadas.
+2.2. Diagrama de Arquitectura
+Presentaría un diagrama de alto nivel mostrando cómo la API interactúa con la base de datos MySQL, el flujo de datos y cómo se manejan las solicitudes y respuestas.
+2.3. Componentes del Sistema
+1.	Controladores (Controllers): Manejan las peticiones HTTP y coordinan la lógica de negocio.
+2.	Servicios (Services): Encapsulan la lógica de negocio, permitiendo la reutilización y separación de responsabilidades.
+3.	Repositorios (Repositories): Interactúan directamente con la base de datos.
+4.	Entidades (Entities): Representan las tablas de la base de datos en el código.
+2.4. Elección de Tecnologías
+•	Spring Boot: Framework robusto para construir aplicaciones Java, que facilita la configuración y la implementación rápida de APIs REST.
+•	MySQL: Base de datos relacional conocida por su rendimiento y facilidad de uso.
+•	GitHub: Para el control de versiones y la colaboración en equipo.
+3. Desarrollo de la API
+3.1. Creación del Proyecto
+•	Inicialización con Spring Boot: Se utiliza la herramienta Spring Initializr para generar la estructura básica del proyecto, con dependencias como Spring Web, Spring Data JPA y MySQL Driver.
+•	Configuración de la Base de Datos: Se configura el archivo application.properties o application.yml con los parámetros de conexión a la base de datos, como URL, usuario y contraseña.
+3.2. Modelo de Datos
+•	Entidad Empleado: Definición de la clase Empleado con sus atributos (ID, nombre, apellido, cargo, etc.) y sus anotaciones JPA para mapearla a la tabla correspondiente en la base de datos.
+•	Relaciones entre Entidades: Definición de relaciones (OneToMany, ManyToOne) si se utilizan otras entidades como Departamento, Rol, etc.
+3.3. Repositorios y Servicios
+•	Repositorios: Creación de interfaces que extienden de JpaRepository, permitiendo realizar operaciones CRUD básicas sobre las entidades.
+•	Servicios: Implementación de la lógica de negocio, como validación de datos antes de persistirlos, lógica para cálculos o transformaciones específicas.
+3.4. Controladores y Endpoints
+•	Endpoints de Empleados:
+o	GET /empleados: Retorna la lista de empleados.
+o	GET /empleados/{id}: Retorna un empleado específico basado en su ID.
+o	POST /empleados: Crea un nuevo empleado.
+o	PUT /empleados/{id}: Actualiza la información de un empleado existente.
+o	DELETE /empleados/{id}: Elimina un empleado.
+Cada endpoint se detalla con su correspondiente manejo de solicitudes y respuestas, manejo de errores y validación de datos.
+3.5. Validación y Manejo de Excepciones
+•	Validaciones: Se utiliza @Valid y @NotNull, @Size, etc., para asegurar que los datos de entrada cumplan con ciertos criterios.
+•	Manejo de Excepciones: Implementación de clases de manejo global de excepciones usando @ControllerAdvice, para capturar y personalizar las respuestas de error.
+3.6. Seguridad
+•	Autenticación y Autorización: Explicación de la implementación de seguridad con Spring Security, utilizando autenticación básica o tokens JWT (si se ha implementado).
+•	Roles y Permisos: Definición de roles de usuario (administrador, usuario) y cómo se restringe el acceso a ciertos endpoints.
+4. Base de Datos
+4.1. Diseño del Esquema
+•	Tablas Principales:
+o	empleados: Almacena la información básica de los empleados.
+o	roles: Tabla para gestionar los diferentes roles y permisos.
+o	Relación entre tablas: Explicación de cómo se manejan las relaciones (FKs) entre tablas.
+4.2. Consultas y Scripts
+•	Creación de Tablas: Script SQL para la creación de la tabla empleados y otras necesarias.
+•	Consultas de Ejemplo: Consultas básicas para recuperar información como SELECT * FROM empleados y más avanzadas, como uniones con otras tablas.
+4.3. Migraciones de Base de Datos
+•	Uso de Flyway o Liquibase: Si se utiliza alguna herramienta de migración, explicar cómo se gestionan los cambios en el esquema de la base de datos.
+5. Flujo de Trabajo y Control de Versiones
+5.1. Uso de Git y GitHub
+•	Ramas y Versionado: Explicación del uso de ramas (master, develop, feature) para organizar el trabajo.
+•	Commits y Mensajes: Buenas prácticas en la redacción de mensajes de commit y cómo se documentan los cambios.
+•	Pull Requests y Code Reviews: Proceso de revisión de código a través de GitHub.
+5.2. Integración Continua
+•	Configuración de CI/CD: Si se utiliza algún pipeline de integración continua (como GitHub Actions o Jenkins), explicar cómo se automatizan las pruebas y el despliegue.
+6. Pruebas y Documentación
+6.1. Pruebas Unitarias
+•	JUnit y Mockito: Uso de bibliotecas para crear pruebas unitarias de servicios y controladores.
+•	Cobertura de Código: Explicación de cómo se mide la cobertura de las pruebas y su importancia.
+6.2. Pruebas de Integración
+•	Pruebas con Base de Datos en Memoria: Uso de bases de datos en memoria (H2) para pruebas sin afectar datos reales.
+•	Pruebas de API: Uso de herramientas como Postman o RestAssured para probar los endpoints.
+6.3. Documentación
+•	Swagger: Generación de documentación automática de la API usando Swagger y OpenAPI.
+•	Markdown en GitHub: Documentación del repositorio utilizando archivos Markdown (README.md, tutorialrestapi.md).
+7. Despliegue e Implementación
+7.1. Despliegue Local
+•	Configuración en Entorno Local: Pasos para ejecutar la API en un entorno de desarrollo local.
+•	Ejecución y Pruebas: Cómo levantar la aplicación y probarla localmente.
+7.2. Despliegue en Producción
+•	Servidor y Base de Datos Remota: Explicación de la infraestructura utilizada para el despliegue en producción.
+•	Despliegue en la Nube: Uso de plataformas como AWS, Heroku, o servidores propios.
+•	Estrategias de Backup y Recuperación: Cómo se gestionan los backups de la base de datos y la recuperación encontinuación con alta disponibilidad.
+7.3. Escalabilidad y Monitoreo
+•	Estrategias de Escalabilidad: Uso de contenedores (Docker) y orquestadores (Kubernetes) para manejar la carga creciente.
+•	Monitoreo: Implementación de herramientas como Prometheus y Grafana para monitorear el rendimiento de la API en tiempo real.
+8. Mantenimiento y Futuras Mejoras
+8.1. Mantenimiento Regular
+•	Actualización de Dependencias: Mantener actualizadas las bibliotecas y frameworks utilizados para evitar vulnerabilidades y obtener nuevas funcionalidades.
+•	Refactorización de Código: Mejorar la calidad del código y la arquitectura a medida que el proyecto crece.
+8.2. Mejoras Futuras
+•	Nuevas Funcionalidades: Ampliar la API para incluir más módulos, como la gestión de inventarios o recursos.
+•	Optimización de Consultas: Mejorar la eficiencia de las consultas a la base de datos para reducir tiempos de respuesta.
+•	Soporte Multilingüe: Agregar soporte para múltiples idiomas en la documentación y respuestas de la API.
+9. Conclusión y Reflexión
+9.1. Logros del Proyecto
+•	Implementación Exitoso: Resaltar cómo la API ha facilitado la gestión de datos dentro del SMN.
+•	Impacto Positivo: Reflexionar sobre el impacto que esta API ha tenido en el flujo de trabajo diario y en la eficiencia operativa.
+9.2. Lecciones Aprendidas
+•	Desafíos Superados: Compartir las dificultades encontradas durante el desarrollo, como problemas de rendimiento o integraciones complejas, y cómo se resolvieron.
+•	Mejoras en el Proceso: Qué se podría haber hecho de manera diferente para optimizar el tiempo y los recursos.
