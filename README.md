@@ -127,9 +127,6 @@ o	Relación entre tablas: Explicación de cómo se manejan las relaciones (FKs) 
 
 •	Consultas de Ejemplo: Consultas básicas para recuperar información como SELECT * FROM empleados y más avanzadas, como uniones con otras tablas.
 
-##  4.3. Migraciones de Base de Datos
-•	Uso de Flyway o Liquibase: Si se utiliza alguna herramienta de migración, explicar cómo se gestionan los cambios en el esquema de la base de datos.
-
 # 5. Flujo de Trabajo y Control de Versiones
 
 ## 5.1. Uso de Git y GitHub
