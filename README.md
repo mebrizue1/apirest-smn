@@ -1,4 +1,6 @@
 # 1. Introducción al Proyecto
+
+[![dbeaver.jpg](https://i.postimg.cc/7YJhzTMB/dbeaver.jpg)](https://postimg.cc/nCZnbrW7)
    
 ## 1.1. Antecedentes y Justificación
 
