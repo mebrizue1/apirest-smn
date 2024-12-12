@@ -108,7 +108,7 @@ Cada endpoint se detalla con su correspondiente manejo de solicitudes y respuest
 •	Manejo de Excepciones: Implementación de clases de manejo global de excepciones usando @ControllerAdvice, para capturar y personalizar las respuestas de error.
 
 ## 3.6. Seguridad
-•	Autenticación y Autorización: Explicación de la implementación de seguridad con Spring Security, utilizando autenticación básica o tokens JWT (si se ha implementado).
+•	Autenticación y Autorización: Explicación de la implementación de seguridad con Spring Security, utilizando autenticación básica o tokens JWT.
 
 •	Roles y Permisos: Definición de roles de usuario (administrador, usuario) y cómo se restringe el acceso a ciertos endpoints.
 
