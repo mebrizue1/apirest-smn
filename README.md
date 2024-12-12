@@ -90,9 +90,9 @@ Presentaría un diagrama de alto nivel mostrando cómo la API interactúa con la
 ## 3.4. Controladores y Endpoints
 •	Endpoints de Empleados:
 
-o	GET /empleados: Retorna la lista de empleados.
+o	GET /empleados: Devuelve la lista de empleados.
 
-o	GET /empleados/{id}: Retorna un empleado específico basado en su ID.
+o	GET /empleados/{id}: Devuelve un empleado específico basado en su ID.
 
 o	POST /empleados: Crea un nuevo empleado.
 
@@ -151,7 +151,7 @@ o	Relación entre tablas: Explicación de cómo se manejan las relaciones (FKs) 
 ## 6.2. Pruebas de Integración
 •	Pruebas con Base de Datos en Memoria: Uso de bases de datos en memoria (H2) para pruebas sin afectar datos reales.
 
-•	Pruebas de API: Uso de herramientas como Postman o RestAssured para probar los endpoints.
+•	Pruebas de API: Uso de herramientas como Postman para probar los endpoints.
 
 ## 6.3. Documentación
 •	Swagger: Generación de documentación automática de la API usando Swagger y OpenAPI.
